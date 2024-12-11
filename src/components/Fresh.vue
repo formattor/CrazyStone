@@ -9,11 +9,57 @@
     </div>
     
     <div class="home-carousel-2">
-      
+      <div class="fresh-router" @click="clickToFresh">
+        
+      </div>
     </div>
 
     <div class="home-card-3">
+      <div class="basic-info">
+        <div class="basic-button">
+          <div class="basic-download" @click="clickDownload"></div>
+          <div class="basic-user">
+            <div class="basic-regester" @click="clickRegester"></div>
+            <div class="basic-charge" @click="clickCharge"></div>
+          </div>
+        </div>
+        <div class="basic-link" @click="clickLink($event)">
+          <a href="#" rel="noopener noreferrer">等级介绍</a>
+          |
+          <a href="#" rel="noopener noreferrer">动漫专区</a>
+          <a href="#" rel="noopener noreferrer">下载安装</a>
+          |
+          <a href="#" rel="noopener noreferrer">进入游戏</a>
+          <a href="#" rel="noopener noreferrer">模式选择</a>
+          |
+          <a href="#" rel="noopener noreferrer">基本操作</a>
+        </div>
+      </div>
+      <div class="fast-track">
+        <div class="fast-link" @click="clickLink($event)">
+          <a href="#" rel="noopener noreferrer">镶嵌系统</a>
+          |
+          <a href="#" rel="noopener noreferrer">合成系统</a>
+          <a href="#" rel="noopener noreferrer">任务系统</a>
+          |
+          <a href="#" rel="noopener noreferrer">宠物系统</a>
+          <a href="#" rel="noopener noreferrer">师徒系统</a>
+          |
+          <a href="#" rel="noopener noreferrer">好友系统</a>
+          <a href="#" rel="noopener noreferrer">结婚系统</a>
+        </div>
+      </div>
 
+      <div class="service-area">
+        <span>客服电话:110-120-119</span>
+      </div>
+
+      <div class="breadcrumb">
+        <el-breadcrumb :separator-icon="ArrowRight">
+          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item>新手指南</el-breadcrumb-item>
+        </el-breadcrumb>
+      </div>
     </div>
 
     <div class="home-body-4">
@@ -31,7 +77,12 @@
 </template>
 
 <script setup lang='ts'>
+import { ElMessage } from 'element-plus'
 import { HomeTab } from '../interface/home';
+import { useRouter } from 'vue-router';
+import { ArrowRight } from '@element-plus/icons-vue'
+
+const router = useRouter();
 
 const homeTabItems: HomeTab = {
   Home: '首页',
@@ -52,13 +103,55 @@ const items:any = Object.keys(homeTabItems).map((key) => ({
 
 const clickHeaderTab = (event:any,item:any) => {
   console.log(event,item);
-  alert(item.label)
+  ElMessage({
+    message: item.label,
+    type: 'success',
+  })
 }
 
 const getClass = (item:any) =>  {
   if(item.label == homeTabItems.Blank) return 'home-tab-blank'
   return 'home-tab'
 }
+
+const clickToFresh = () => {
+  ElMessage({
+    message: '新手入门',
+    type: 'success',
+  })
+  router.push('/');
+}
+
+const clickDownload = () => {
+  ElMessage({
+    message: '游戏下载',
+    type: 'success',
+  })
+}
+
+const clickRegester = () => {
+  ElMessage({
+    message: '游戏注册',
+    type: 'success',
+  })
+}
+
+const clickCharge = () => {
+  ElMessage({
+    message: '游戏充值',
+    type: 'success',
+  })
+}
+
+const clickLink = (event:any) => {
+  console.log(event);
+  event.preventDefault();
+  ElMessage({
+    message: event.target.textContent,
+    type: 'success',
+  })
+}
+
 </script>
 
 <style scoped lang='less'>
@@ -85,14 +178,14 @@ const getClass = (item:any) =>  {
         .home-tab{
             height: 30px;
             width: 80px;
-            background-color: rgba(22, 33, 44, 0.7);
-            border: 1px solid red;
+            // background-color: rgba(22, 33, 44, 0.7);
+            // border: 1px solid red;
         }
         .home-tab-blank{
             height: 30px;
             width: 300px;
-            background-color: rgba(22, 33, 44, 0.7);
-            border: 1px solid red;
+            // background-color: rgba(22, 33, 44, 0.7);
+            // border: 1px solid red;
         }
     }
   }
@@ -100,11 +193,149 @@ const getClass = (item:any) =>  {
   .home-carousel-2{
     height: 255px;
     background: url(../assets/background/page_bg_02.jpg) center / contain no-repeat;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    .fresh-router{
+      position: absolute;
+      left: 50%; /* 定位到中线 */
+      transform: translateX(-50%); /* 使元素完全居中 */
+      margin-left: -370px; /* 偏移 300px */
+      margin-top: 80px; /* 偏移 300px */
+      width: 200px;
+      height: 60px;
+      // background-color: rgba(22, 33, 44, 0.7);
+      // border: 1px solid red;
+      background: url(../assets/background/newGamer.gif) center / contain no-repeat;
+    }
   }
 
   .home-card-3{
     height: 357px;
     background: url(../assets/background/page_bg_03.jpg) center / contain no-repeat;
+    .basic-info{
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      left: 50%; /* 定位到中线 */
+      transform: translateX(-50%); /* 使元素完全居中 */
+      margin-left: -370px; /* 偏移 300px */
+      margin-top: -60px; /* 偏移 300px */
+      width: 187px;
+      height: 160px;
+      // background-color: rgba(22, 33, 44, 0.3);
+      // border: 1px solid red;
+      background: url(../assets/background/home_items_1.gif);
+      background-position: -200px;
+      .basic-button{
+        width: 100%;
+        height: 100px;
+        // background-color: rgba(22, 33, 44, 0.3);
+        // border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        .basic-download{
+          width: 100%;
+          height: 40px;
+          // background-color: rgba(22, 33, 44, 0.3);
+          // border: 1px solid red;
+        }
+        .basic-user{
+          display: flex;
+          flex-direction: row;
+          margin-top: 8px;
+          height: 30px;
+          .basic-regester{
+            width: 50%;
+            margin-right: 5px;
+            // background-color: rgba(22, 33, 44, 0.7);
+            // border: 1px solid yellow;
+          }
+          .basic-charge{
+            width: 50%;
+            margin-left: 5px;
+            // background-color: rgba(22, 33, 44, 0.7);
+            // border: 1px solid blue;
+          }
+        }
+      }
+      .basic-link{
+        height: 60px;
+        width: 160px;
+        margin-top: 95px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #793A19;
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+        a:hover {
+          text-decoration: underline;
+          color: #FB200F;
+        }
+        font-family: "宋体", SimSun, serif;
+        // background-color: rgba(22, 33, 44, 0.6);
+        // border: 1px solid red;
+      }
+    }
+    .fast-track{
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      left: 50%; /* 定位到中线 */
+      transform: translateX(-50%); /* 使元素完全居中 */
+      margin-left: -370px; /* 偏移 300px */
+      margin-top: 180px; /* 偏移 300px */
+      width: 187px;
+      height: 110px;
+      // background-color: rgba(22, 33, 44, 0.3);
+      // border: 1px solid red;
+      .fast-link{
+        text-align: center;
+        height: 60px;
+        width: 160px;
+        margin-top: 10px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #793A19;
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+        a:hover {
+          text-decoration: underline;
+          color: #FB200F;
+        }
+        font-family: "宋体", SimSun, serif;
+      }
+    }
+    .service-area{
+      text-align: center;
+      height: 65px;
+      width: 160px;
+      margin-left: -370px;
+      margin-top: 360px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #793A19;
+      font-family: "宋体", SimSun, serif;
+      background: url(../assets/background/home_items_2.gif);
+      background-position: 30px 30px;
+    }
+    .breadcrumb{
+      text-align: center;
+      height: 20px;
+      width: 700px;
+      margin-left: 150px;
+      margin-top: 23px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   .home-body-4{

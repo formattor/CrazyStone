@@ -86,6 +86,9 @@
 <script setup lang='ts'>
 import { ElMessage } from 'element-plus'
 import { HomeTab } from '../interface/home';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const homeTabItems: HomeTab = {
   Home: '首页',
@@ -122,6 +125,7 @@ const clickToFresh = () => {
     message: '新手入门',
     type: 'success',
   })
+  router.push('/message');
 }
 
 const clickDownload = () => {

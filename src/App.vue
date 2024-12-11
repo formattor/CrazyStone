@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import Home from './components/Home.vue';
 </script>
 
 <template>
-  <Home></Home>
+  <router-view></router-view>
 </template>
 
 <style scoped lang="less"> 
